@@ -1,9 +1,8 @@
-//
 //  BeaconApp.swift
 //  Beacon
-//
+
 //  Created by Dhruv Gupta on 20/06/22.
-//
+
 
 import SwiftUI
 
@@ -11,7 +10,7 @@ import SwiftUI
 struct BeaconApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LaunchView().environmentObject(ContentModel())
         }
     }
 }

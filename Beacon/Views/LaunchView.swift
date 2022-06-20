@@ -1,21 +1,20 @@
-//
-//  ContentView.swift
+//  LaunchView.swift
 //  Beacon
-//
+
 //  Created by Dhruv Gupta on 20/06/22.
-//
+
 
 import SwiftUI
 
-struct ContentView: View {
+struct LaunchView: View {
     var body: some View {
         Text("Hello, world!")
             .padding()
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct LaunchView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        LaunchView()
     }
 }

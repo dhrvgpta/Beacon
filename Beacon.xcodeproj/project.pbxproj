@@ -8,17 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		9EF7C4B02860E0C50073E4E4 /* BeaconApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF7C4AF2860E0C50073E4E4 /* BeaconApp.swift */; };
-		9EF7C4B22860E0C50073E4E4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF7C4B12860E0C50073E4E4 /* ContentView.swift */; };
+		9EF7C4B22860E0C50073E4E4 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF7C4B12860E0C50073E4E4 /* LaunchView.swift */; };
 		9EF7C4B42860E0C60073E4E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EF7C4B32860E0C60073E4E4 /* Assets.xcassets */; };
 		9EF7C4B72860E0C60073E4E4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EF7C4B62860E0C60073E4E4 /* Preview Assets.xcassets */; };
+		9EF7C4C12860E2600073E4E4 /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF7C4C02860E2600073E4E4 /* ContentModel.swift */; };
+		9EF7C4C42861102A0073E4E4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF7C4C32861102A0073E4E4 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9EF7C4AC2860E0C50073E4E4 /* Beacon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beacon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EF7C4AF2860E0C50073E4E4 /* BeaconApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconApp.swift; sourceTree = "<group>"; };
-		9EF7C4B12860E0C50073E4E4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9EF7C4B12860E0C50073E4E4 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		9EF7C4B32860E0C60073E4E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9EF7C4B62860E0C60073E4E4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		9EF7C4C02860E2600073E4E4 /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
+		9EF7C4C32861102A0073E4E4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +56,10 @@
 			isa = PBXGroup;
 			children = (
 				9EF7C4AF2860E0C50073E4E4 /* BeaconApp.swift */,
-				9EF7C4B12860E0C50073E4E4 /* ContentView.swift */,
-				9EF7C4B32860E0C60073E4E4 /* Assets.xcassets */,
+				9EF7C4BF2860E13E0073E4E4 /* Views */,
+				9EF7C4BE2860E1350073E4E4 /* ViewModels */,
+				9EF7C4C2286110010073E4E4 /* Resources */,
+				9EF7C4BD2860E12E0073E4E4 /* Models */,
 				9EF7C4B52860E0C60073E4E4 /* Preview Content */,
 			);
 			path = Beacon;
@@ -65,6 +71,38 @@
 				9EF7C4B62860E0C60073E4E4 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		9EF7C4BD2860E12E0073E4E4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9EF7C4BE2860E1350073E4E4 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				9EF7C4C02860E2600073E4E4 /* ContentModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		9EF7C4BF2860E13E0073E4E4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9EF7C4B12860E0C50073E4E4 /* LaunchView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9EF7C4C2286110010073E4E4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9EF7C4B32860E0C60073E4E4 /* Assets.xcassets */,
+				9EF7C4C32861102A0073E4E4 /* Constants.swift */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +175,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9EF7C4B22860E0C50073E4E4 /* ContentView.swift in Sources */,
+				9EF7C4B22860E0C50073E4E4 /* LaunchView.swift in Sources */,
 				9EF7C4B02860E0C50073E4E4 /* BeaconApp.swift in Sources */,
+				9EF7C4C12860E2600073E4E4 /* ContentModel.swift in Sources */,
+				9EF7C4C42861102A0073E4E4 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +310,7 @@
 				DEVELOPMENT_TEAM = 7H267678BY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Grant location access to find restaurants and landmarks near you.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +340,7 @@
 				DEVELOPMENT_TEAM = 7H267678BY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Grant location access to find restaurants and landmarks near you.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
