@@ -9,6 +9,8 @@ import CoreLocation
 
 class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     var locationManager = CLLocationManager()
+    var sights = [Business]()
+    var restaurants = [Business]()
     
     override init(){
         
@@ -49,13 +51,13 @@ class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
             locationManager.stopUpdatingLocation()
             
             // Pass the location to Yelp API
-            getBusinesses(categories: Constants.categories[0], location: userLocation!)
+            getBusinesses(category: Constants.categories[1], location: userLocation!)
         }
     }
     
     // MARK: - Yelp API Methods
     
-    func getBusinesses(categories: String, location: CLLocation){
+    func getBusinesses(category: String, location: CLLocation){
         
         // Create URL - Method 1
         
@@ -70,7 +72,7 @@ class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         urlComponents?.queryItems = [
             URLQueryItem(name: "latitude", value: String(location.coordinate.latitude)),
             URLQueryItem(name: "longitude", value: String(location.coordinate.longitude)),
-            URLQueryItem(name: "categories", value: String(categories)),
+            URLQueryItem(name: "categories", value: String(category)),
             URLQueryItem(name: "limit", value: "6")
         ]
         
@@ -86,7 +88,7 @@ class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         // Create URL request
         var request = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10.0)
         request.httpMethod = "GET"
-        request.addValue("Bearer" + Constants.apiKey
+        request.addValue("Bearer \(Constants.apiKey)"
                          , forHTTPHeaderField: "Authorization")
         
         // Create URL session
@@ -98,10 +100,32 @@ class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
                 print(error!)
                 return
             }
-            print(response!)
+            // Parse the JSON data
+            do{
+                let decoder = JSONDecoder()
+                let decoded_data = try decoder.decode(BusinessSearch.self, from: data!)
+                
+                // Assign the data tp respective properties
+                DispatchQueue.main.async {
+                    switch category{
+                    case "arts":
+                        self.sights = decoded_data.businesses
+                    
+                    case "restaurants":
+                        self.restaurants = decoded_data.businesses
+                        
+                    default:
+                        break
+                    }
+                }
+                
+            }catch{
+                print(error)
+            }
         }
         
         // Kick-off the data task
         dataTask.resume()
+        
     }
 }
