@@ -22,13 +22,15 @@ struct BusinessRowView: View {
             // Name and distance
             VStack(alignment: .leading){
                 Text(business.name!)
+                    .multilineTextAlignment(.leading)
                 Text(String(format: "%.2f kms away", (business.distance ?? 0)/1000))
                     .font(.caption)
             }
+            
             Spacer()
             
             // Star rating & no. of reviews
-            VStack(alignment: .leading){
+            VStack{
                 Image("regular_\(business.rating ?? 0.0)")
                 Text("Based on \(business.reviewCount ?? 0) reviews")
                     .font(.caption)
