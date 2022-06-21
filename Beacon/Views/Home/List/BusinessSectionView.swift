@@ -13,7 +13,11 @@ struct BusinessSectionView: View {
     var body: some View {
         Section(header: BusinessHeaderView(title: sectionTitle)){
             ForEach(businesses){ business in
-                BusinessRowView(business: business)
+                NavigationLink {
+                    BusinessDetailView(business: business)
+                } label: {
+                    BusinessRowView(business: business)
+                }
             }
         }
     }

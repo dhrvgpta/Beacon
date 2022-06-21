@@ -30,7 +30,7 @@ struct BusinessRowView: View {
             // Star rating & no. of reviews
             VStack(alignment: .leading){
                 Image("regular_\(business.rating ?? 0.0)")
-                Text("\(business.reviewCount ?? 0) reviews")
+                Text("Based on \(business.reviewCount ?? 0) reviews")
                     .font(.caption)
                 
             }
