@@ -7,9 +7,19 @@
 import SwiftUI
 
 struct LaunchView: View {
+    @EnvironmentObject var model:ContentModel
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        if model.authorizationState == .notDetermined{
+            // If undetermined, we're gonna show OnboardingView
+        }
+        else if model.authorizationState == .denied{
+            // If undetermined, we're gonna show DeniedView
+        }
+        else{
+            // If approved, we're gonna show the HomeView
+            BusinessHomeView()
+        }
     }
 }
 

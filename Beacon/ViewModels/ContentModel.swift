@@ -8,9 +8,13 @@ import Foundation
 import CoreLocation
 
 class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
+    
+    // MARK: - Properties
+    
+    @Published var authorizationState = CLAuthorizationStatus.notDetermined
     var locationManager = CLLocationManager()
-    var sights = [Business]()
-    var restaurants = [Business]()
+    @Published var sights = [Business]()
+    @Published var restaurants = [Business]()
     
     override init(){
         
@@ -27,6 +31,9 @@ class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     // MARK: - LocationManager Delegate Methods
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        
+        // Update the authorizationState property
+        self.authorizationState = locationManager.authorizationStatus
         
         if locationManager.authorizationStatus == CLAuthorizationStatus.authorizedAlways ||
             locationManager.authorizationStatus == CLAuthorizationStatus.authorizedWhenInUse{
@@ -51,6 +58,8 @@ class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
             locationManager.stopUpdatingLocation()
             
             // Pass the location to Yelp API
+            
+            getBusinesses(category: Constants.categories[0], location: userLocation!)
             getBusinesses(category: Constants.categories[1], location: userLocation!)
         }
     }
@@ -105,14 +114,27 @@ class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
                 let decoder = JSONDecoder()
                 let decoded_data = try decoder.decode(BusinessSearch.self, from: data!)
                 
+                // Sort businesses based on how close they are
+                
+                var businesses = decoded_data.businesses
+                businesses.sort{ (b1, b2) -> Bool in
+                    return b1.distance ?? 0 < b2.distance ?? 0
+                }
+                
+                for b in businesses{
+                    b.getImageData()
+                }
+                
+                
                 // Assign the data tp respective properties
                 DispatchQueue.main.async {
+                    
                     switch category{
                     case "arts":
-                        self.sights = decoded_data.businesses
+                        self.sights = businesses
                     
                     case "restaurants":
-                        self.restaurants = decoded_data.businesses
+                        self.restaurants = businesses
                         
                     default:
                         break
@@ -126,6 +148,5 @@ class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         
         // Kick-off the data task
         dataTask.resume()
-        
     }
 }
