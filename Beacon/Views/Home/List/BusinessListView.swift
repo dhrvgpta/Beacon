@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct BusinessListView: View {
-    @EnvironmentObject var model:ContentModel
+    @EnvironmentObject var model: ContentModel
     
     var body: some View {
         if !model.restaurants.isEmpty || !model.sights.isEmpty{

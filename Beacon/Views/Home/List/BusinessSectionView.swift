@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct BusinessSectionView: View {
-    var sectionTitle:String
+    var sectionTitle: String
     var businesses: [Business]
     
     var body: some View {

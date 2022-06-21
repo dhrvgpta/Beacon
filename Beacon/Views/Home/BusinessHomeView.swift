@@ -7,26 +7,34 @@
 import SwiftUI
 
 struct BusinessHomeView: View {
-    @EnvironmentObject var model:ContentModel
+    @EnvironmentObject var model: ContentModel
     @State var showMapView = false
     
     var body: some View {
         if model.restaurants.count != 0 || model.sights.count != 0 {
-            if !showMapView{
-                // Show ListView
-                VStack(alignment: .leading){
-                    HStack{
-                        Image(systemName: "building.2.crop.circle.fill")
-                        Text("Las Vegas")
-                        Spacer()
-                        Text("Switch to Map View")
-                    }
-                    Divider()
-                    BusinessListView()
-                }.padding([.horizontal, .top])
-            }else{
-                
-                // TODO: - Show MapView
+            NavigationView{
+                if !showMapView{
+                    // Show ListView
+                    VStack(alignment: .leading){
+                        HStack{
+                            Image(systemName: "building.2.crop.circle.fill")
+                            Text("Las Vegas")
+                            Spacer()
+                            Button(action: {
+                                showMapView = true
+                            }, label: {
+                               Image(systemName: "map.circle.fill")
+                            })
+                           
+                        }
+                        Divider()
+                        BusinessListView()
+                    }.padding([.horizontal, .top])
+                     .accentColor(.black)
+                     .navigationBarHidden(true)
+                }else{
+                    BusinessMapView().ignoresSafeArea()
+                }
             }
         }else{
 

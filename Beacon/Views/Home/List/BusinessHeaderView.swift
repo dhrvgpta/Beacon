@@ -6,7 +6,7 @@
 import SwiftUI
 
 struct BusinessHeaderView: View {
-    var title:String
+    var title: String
     
     var body: some View {
         ZStack(alignment: .leading){

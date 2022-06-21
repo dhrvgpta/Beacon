@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct BusinessRowView: View {
-    @ObservedObject var business:Business
+    @ObservedObject var business: Business
     
     var body: some View {
         HStack{
